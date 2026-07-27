@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payam Website</title>
+    <meta name="description" content="Discover your next favorite book at Payam. Browse our handpicked collection of inspiring reads and join our welcoming reading community." />
+    <meta name="keywords" content="Payam bookstore, books, reading, book recommendations, online bookstore" />
+    <meta property="og:title" content="Payam - Discover Your Next Favorite Book" />
+    <meta property="og:description" content="Browse our handpicked collection of inspiring reads and uncover stories that stay with you." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/payam-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <a href="index.html" class="brand">
+          <img src="pics/payam-logo.svg" alt="Payam logo" class="logo-img" />
+          <span class="logo-text">Payam</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="login.html" class="btn" id="logoutBtn">Logout</a>
+      </nav>
+
+      <section class="hero-content" id="home">
+        <h1>Discover your next favorite book</h1>
+        <p>Browse our handpicked collection, find inspiring reads, and uncover stories that stay with you.</p>
+        <form id="googleSearchForm" class="google-search-form">
+          <input id="googleSearchInput" type="text" placeholder="Search Google..." aria-label="Google search" required />
+          <button type="submit" class="btn search-btn">Search Google</button>
+        </form>
+        <a href="#" class="btn" id="exploreBtn">Explore</a>
+      </section>
+    </header>
+
+    <main>
+      <section class="section books-section" id="books">
+        <h2>Featured Books</h2>
+        <div class="books-grid">
+          <article class="book-card">
+            <img src="pics/classic-novel.jpg" alt="Classic novel cover" />
+            <div class="book-info">
+              <h3>The Midnight Library</h3>
+              <p>A moving novel about choices, second chances, and the lives we might have lived.</p>
+              <span>Author: Matt Haig</span>
+            </div>
+          </article>
+          <article class="book-card">
+            <img src="pics/becoming.jpg" alt="Memoir book cover" />
+            <div class="book-info">
+              <h3>Becoming</h3>
+              <p>An inspiring memoir from Michelle Obama about purpose, leadership, and hope.</p>
+              <span>Author: Michelle Obama</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="about">
+        <h2>Why choose Payam?</h2>
+        <div class="features">
+          <article class="feature-card">
+            <div class="feature-icon">✨</div>
+            <h3>Modern Design</h3>
+            <p>Beautiful layouts that make your brand stand out instantly.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Launch</h3>
+            <p>Set up your page quickly and share it with the world.</p>
+          </article>
+          <article class="feature-card">
+            <div class="feature-icon">🔒</div>
+            <h3>Secure & Reliable</h3>
+            <p>Built with dependable structure and simple user experience.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section contact-section" id="contact">
+        <h2>Contact</h2>
+        <p>Reach out for your next project or collaboration.</p>
+      </section>
+    </main>
+
+    <script>
+      const loginKey = 'payam-logged-in';
+      const logoutBtn = document.getElementById('logoutBtn');
+      const exploreBtn = document.getElementById('exploreBtn');
+
+      if (localStorage.getItem(loginKey) !== 'true') {
+        window.location.href = 'login.html';
+      }
+
+      logoutBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        localStorage.removeItem(loginKey);
+        window.location.href = 'login.html';
+      });
+
+      exploreBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        document.getElementById('about').scrollIntoView({ behavior: 'smooth' });
+      });
+
+      const googleSearchForm = document.getElementById('googleSearchForm');
+      const googleSearchInput = document.getElementById('googleSearchInput');
+
+      googleSearchForm.addEventListener('submit', (event) => {
+        event.preventDefault();
+        const query = googleSearchInput.value.trim();
+        if (!query) return;
+        window.open(`https://www.google.com/search?q=${encodeURIComponent(query)}`, '_blank');
+      });
+    </script>
+
+    <div class="chatbot-widget">
+      <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chatbot">🤖</button>
+      <div class="chatbot-panel" id="chatbotPanel" hidden>
+        <div class="chatbot-header">
+          Book Bot
+          <span id="chatbotClose">×</span>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <form class="chatbot-form" id="chatbotForm">
+          <input id="chatbotInput" type="text" placeholder="Ask about books..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="bot.js"></script>
+  </body>
+</html>
+    

@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Payam</title>
+    <meta name="description" content="Learn about Payam Books - a cozy bookstore dedicated to great stories, expert recommendations, and a welcoming reading community." />
+    <meta name="keywords" content="Payam, about, bookstore, reading, community, recommendations" />
+    <meta property="og:title" content="About Payam Books" />
+    <meta property="og:description" content="We're dedicated to great stories, expert recommendations, and a welcoming reading community." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/payam-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <a href="index.html" class="brand">
+          <img src="pics/payam-logo.svg" alt="Payam logo" class="logo-img" />
+          <span class="logo-text">Payam</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="login.html" class="btn" id="logoutBtn">Logout</a>
+      </nav>
+
+      <section class="hero-content">
+        <h1>About Payam Books</h1>
+        <p>We’re a cozy bookstore dedicated to great stories, expert recommendations, and a welcoming reading community.</p>
+      </section>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="features">
+          <article class="feature-card">
+            <h3>Who we are</h3>
+            <p>Payam is a welcoming bookstore that brings together readers, thoughtful recommendations, and memorable stories.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Our mission</h3>
+            <p>We aim to make discovering books easy, inspiring, and personal for every kind of reader.</p>
+          </article>
+          <article class="feature-card">
+            <h3>Why it matters</h3>
+            <p>Books open new worlds, spark ideas, and help people grow through every page they turn.</p>
+          </article>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const loginKey = 'payam-logged-in';
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      if (localStorage.getItem(loginKey) !== 'true') {
+        window.location.href = 'login.html';
+      }
+
+      logoutBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        localStorage.removeItem(loginKey);
+        window.location.href = 'login.html';
+      });
+    </script>
+    <div class="chatbot-widget">
+      <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chatbot">🤖</button>
+      <div class="chatbot-panel" id="chatbotPanel" hidden>
+        <div class="chatbot-header">
+          Book Bot
+          <span id="chatbotClose">×</span>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <form class="chatbot-form" id="chatbotForm">
+          <input id="chatbotInput" type="text" placeholder="Ask about books..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="bot.js"></script>
+  </body>
+</html>

@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <meta name="description" content="Create your Payam account and join our reading community. Sign up to access personalized book recommendations and exclusive features." />
+    <meta name="keywords" content="Payam, sign up, create account, bookstore, reading community" />
+    <meta property="og:title" content="Join Payam - Sign Up Today" />
+    <meta property="og:description" content="Create your account and start exploring our collection of great books." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/payam-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+    <div class="signup-container">
+        <!-- Sign Up Form -->
+        <div id="signup-form" class="form-section active">
+            <div class="form-wrapper">
+                <h1>Create Your Account</h1>
+                <p class="form-subtitle">Join us today</p>
+
+                <form id="signupForm">
+                    <!-- Full Name -->
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input 
+                            type="text" 
+                            id="fullname" 
+                            name="fullname" 
+                            placeholder="Enter your full name"
+                            required
+                        >
+                        <span class="error-message" id="fullname-error"></span>
+                    </div>
+
+                    <!-- Username -->
+                    <div class="form-group">
+                        <label for="username">Username</label>
+                        <input 
+                            type="text" 
+                            id="username" 
+                            name="username" 
+                            placeholder="Choose a username"
+                            required
+                        >
+                        <span class="error-message" id="username-error"></span>
+                    </div>
+
+                    <!-- Email -->
+                    <div class="form-group">
+                        <label for="email">Gmail Address</label>
+                        <input 
+                            type="email" 
+                            id="email" 
+                            name="email" 
+                            placeholder="Enter your Gmail"
+                            required
+                        >
+                        <span class="error-message" id="email-error"></span>
+                    </div>
+
+                    <!-- Password -->
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="password" 
+                                name="password" 
+                                placeholder="Create a strong password"
+                                required
+                            >
+                            <button type="button" id="togglePassword" class="toggle-password">
+                                👁️
+                            </button>
+                        </div>
+                        <span class="error-message" id="password-error"></span>
+
+                        <!-- Password Requirements -->
+                        <div class="password-requirements">
+                            <p class="requirements-title">Password must contain:</p>
+                            <ul class="requirements-list">
+                                <li id="req-capital">
+                                    <span class="requirement-icon">✗</span>
+                                    At least one capital letter (A-Z)
+                                </li>
+                                <li id="req-small">
+                                    <span class="requirement-icon">✗</span>
+                                    At least one small letter (a-z)
+                                </li>
+                                <li id="req-number">
+                                    <span class="requirement-icon">✗</span>
+                                    At least one number (0-9)
+                                </li>
+                                <li id="req-special">
+                                    <span class="requirement-icon">✗</span>
+                                    At least one special character (@, #, $, !)
+                                </li>
+                                <li id="req-length">
+                                    <span class="requirement-icon">✗</span>
+                                    At least 8 characters long
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Confirm Password -->
+                    <div class="form-group">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <div class="password-input-wrapper">
+                            <input 
+                                type="password" 
+                                id="confirmPassword" 
+                                name="confirmPassword" 
+                                placeholder="Confirm your password"
+                                required
+                            >
+                            <button type="button" id="toggleConfirmPassword" class="toggle-password">
+                                👁️
+                            </button>
+                        </div>
+                        <span class="error-message" id="confirmPassword-error"></span>
+                    </div>
+
+                    <!-- Gender -->
+                    <div class="form-group">
+                        <label for="gender">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                        </select>
+                        <span class="error-message" id="gender-error"></span>
+                    </div>
+
+                    <!-- Date of Birth / Age -->
+                    <div class="form-group">
+                        <label for="dob">Date of Birth</label>
+                        <input 
+                            type="date" 
+                            id="dob" 
+                            name="dob" 
+                            required
+                        >
+                        <span class="error-message" id="dob-error"></span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-btn">Create Account</button>
+
+                    <!-- Login Link -->
+                    <p class="login-link">
+                        Already have an account? <a href="login.html">Log in here</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Validation/Success Slide -->
+        <div id="validation-slide" class="form-section">
+            <div class="validation-wrapper">
+                <div class="success-icon">✓</div>
+                <h2>Account Created Successfully!</h2>
+                <p class="validation-message">Welcome to our community</p>
+                
+                <div class="user-summary">
+                    <h3>Account Details:</h3>
+                    <p><strong>Full Name:</strong> <span id="summary-fullname"></span></p>
+                    <p><strong>Username:</strong> <span id="summary-username"></span></p>
+                    <p><strong>Email:</strong> <span id="summary-email"></span></p>
+                    <p><strong>Gender:</strong> <span id="summary-gender"></span></p>
+                    <p><strong>Date of Birth:</strong> <span id="summary-dob"></span></p>
+                </div>
+
+                <div class="action-buttons">
+                    <button id="go-to-login" class="btn-primary">Go to Login</button>
+                    <button id="go-back" class="btn-secondary">Create Another Account</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payam Login</title>
+    <meta name="description" content="Secure login and sign-up for Payam bookstore. Create your account or sign in to access personalized book recommendations and features." />
+    <meta name="keywords" content="Payam bookstore, login, sign up, account, books, reading" />
+    <meta property="og:title" content="Payam Login" />
+    <meta property="og:description" content="Sign in or create an account to explore Payam's book collection and member features." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/dc1021e731f09a36b8a6b86319c0066e.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <div class="brand">
+          <img src="pics/payam-logo.svg" alt="Payam logo" class="logo-img" />
+          <span class="logo-text">Payam</span>
+        </div>
+      </nav>
+
+      <section class="hero-content">
+        <div class="auth-panel">
+          <h2>Welcome back</h2>
+          <p>Login to continue</p>
+          <form id="authForm" class="auth-form">
+            <input id="username" type="text" placeholder="Username" required />
+            <input id="password" type="password" placeholder="Enter your password" required />
+            <button type="submit" class="btn">Login</button>
+          </form>
+          <p class="switch-text">
+            Don’t have an account?
+            <a href="signup.html">Sign up</a>
+          </p>
+          <p id="message" class="message"></p>
+        </div>
+      </section>
+    </header>
+
+    <script src="auth.js"></script>
+  </body>
+</html>

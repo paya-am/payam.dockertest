@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Payam Acceptance</title>
+    <meta name="description" content="Complete your Payam login with our secure verification process. Verify that you're human to access your account." />
+    <meta name="keywords" content="Payam, login verification, security, authentication, bookstore" />
+    <meta property="og:title" content="Verify Your Payam Login" />
+    <meta property="og:description" content="Secure login confirmation for your Payam account." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/payam-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <a href="index.html" class="brand">
+          <img src="pics/payam-logo.svg" alt="Payam logo" class="logo-img" />
+          <span class="logo-text">Payam</span>
+        </a>
+      </nav>
+
+      <section class="hero-content">
+        <div class="auth-panel">
+          <h2>Confirm your login</h2>
+          <p>We just need one more step to complete your login.</p>
+          <p id="acceptMessage" class="message"></p>
+          <div class="captcha-box" style="margin: 16px 0;">
+            <label class="captcha-label">CAPTCHA: Are you human?</label>
+            <div style="display:flex;gap:12px;align-items:center;margin-top:8px;">
+              <label style="display:inline-flex;align-items:center;gap:6px;"><input id="captchaYes" name="human" type="radio" value="yes"> Yes</label>
+              <label style="display:inline-flex;align-items:center;gap:6px;"><input id="captchaNo" name="human" type="radio" value="no"> No</label>
+            </div>
+          </div>
+          <p id="captchaError" class="message"></p>
+          <button id="acceptBtn" class="btn">Accept and continue</button>
+          <button id="cancelBtn" class="btn" style="margin-left: 12px; background:#f97316; color:white;">Cancel</button>
+        </div>
+      </section>
+    </header>
+
+    <script>
+      const pendingKey = 'payam-acceptance-pending';
+      const pendingUserKey = 'payam-pending-user';
+      const loginKey = 'payam-logged-in';
+
+      const pending = localStorage.getItem(pendingKey);
+      const user = localStorage.getItem(pendingUserKey);
+      const acceptMessage = document.getElementById('acceptMessage');
+      const captchaError = document.getElementById('captchaError');
+      const acceptBtn = document.getElementById('acceptBtn');
+      const cancelBtn = document.getElementById('cancelBtn');
+      const captchaYes = document.getElementById('captchaYes');
+
+      if (pending !== 'true' || !user) {
+        window.location.href = 'login.html';
+      } else {
+        acceptMessage.textContent = '';
+      }
+
+      acceptBtn.addEventListener('click', () => {
+        if (!captchaYes || !captchaYes.checked) {
+          captchaError.textContent = 'Please confirm you are human before continuing.';
+          return;
+        }
+        captchaError.textContent = '';
+        acceptMessage.textContent = 'Human verification complete. Redirecting...';
+        localStorage.setItem(loginKey, 'true');
+        localStorage.removeItem(pendingKey);
+        localStorage.removeItem(pendingUserKey);
+        setTimeout(() => {
+          window.location.href = 'index.html';
+        }, 700);
+      });
+
+      cancelBtn.addEventListener('click', () => {
+        localStorage.removeItem(pendingKey);
+        localStorage.removeItem(pendingUserKey);
+        window.location.href = 'login.html';
+      });
+    </script>
+  </body>
+</html>

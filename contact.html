@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contact Payam</title>
+    <meta name="description" content="Get in touch with Payam bookstore. We'd love to hear from you for book recommendations, questions, or bookish conversations." />
+    <meta name="keywords" content="Payam, contact, bookstore, support, inquiries" />
+    <meta property="og:title" content="Contact Payam Bookstore" />
+    <meta property="og:description" content="Reach out to us for recommendations, questions, or bookish conversations." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="pics/payam-logo.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <header class="hero">
+      <nav class="navbar">
+        <a href="index.html" class="brand">
+          <img src="pics/payam-logo.svg" alt="Payam logo" class="logo-img" />
+          <span class="logo-text">Payam</span>
+        </a>
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+        <a href="login.html" class="btn" id="logoutBtn">Logout</a>
+      </nav>
+
+      <section class="hero-content">
+        <h1>Contact the bookstore</h1>
+        <p>We would love to hear from you. Reach out for recommendations, questions, or bookish conversations.</p>
+      </section>
+    </header>
+
+    <main>
+      <section class="section">
+        <div class="feature-card" style="max-width: 600px; margin: 0 auto; text-align: left;">
+          <h3>Get in touch</h3>
+          <p>Email: hello@payam.com</p>
+          <p>Phone: +964 770 123 4567</p>
+          <form class="auth-form" style="margin-top: 1rem;">
+            <input type="text" placeholder="Your name" />
+            <input type="email" placeholder="Your email" />
+            <textarea placeholder="Message" style="min-height: 100px; padding: 0.9rem 1rem; border-radius: 16px; border: 1px solid #cbd5e1;"></textarea>
+            <button type="submit" class="btn">Send Message</button>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      const loginKey = 'payam-logged-in';
+      const logoutBtn = document.getElementById('logoutBtn');
+
+      if (localStorage.getItem(loginKey) !== 'true') {
+        window.location.href = 'login.html';
+      }
+
+      logoutBtn.addEventListener('click', (event) => {
+        event.preventDefault();
+        localStorage.removeItem(loginKey);
+        window.location.href = 'login.html';
+      });
+    </script>
+    <div class="chatbot-widget">
+      <button class="chatbot-toggle" id="chatbotToggle" aria-label="Open chatbot">🤖</button>
+      <div class="chatbot-panel" id="chatbotPanel" hidden>
+        <div class="chatbot-header">
+          Book Bot
+          <span id="chatbotClose">×</span>
+        </div>
+        <div class="chatbot-messages" id="chatbotMessages"></div>
+        <form class="chatbot-form" id="chatbotForm">
+          <input id="chatbotInput" type="text" placeholder="Ask about books..." autocomplete="off" required />
+          <button type="submit">Send</button>
+        </form>
+      </div>
+    </div>
+    <script src="bot.js"></script>
+  </body>
+</html>
