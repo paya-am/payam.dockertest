@@ -1,4 +1,3 @@
-.gethub/workflows/hi.yaml
 name: Example
 
 on:
