@@ -8,14 +8,10 @@ on:
 jobs:
   message:
     runs-on: ubuntu-latest
-   
-    steps: [
-        {
-          "name": "Checkout repository",
-          "uses": "actions/checkout@v7"
-        },
-        {
-          "name": "Print readme",
-          "run": "cat README.md"
-        }
-      ]
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Print readme
+        run: cat hi.html
