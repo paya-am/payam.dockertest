@@ -44,7 +44,7 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            ${{ secrets.DOCKERHUB_USERNAME }}/your-repo-name:latest
-            ${{ secrets.DOCKERHUB_USERNAME }}/your-repo-name:${{ github.sha }}
+             ${{ secrets.DOCKERHUB_USERNAME }}/payam:latest
+             ${{ secrets.DOCKERHUB_USERNAME }}/payam:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
