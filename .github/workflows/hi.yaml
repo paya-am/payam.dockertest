@@ -1,4 +1,4 @@
-name: Build and Publish Docker Image
+name: Example
 
 on:
   push:
@@ -6,45 +6,16 @@ on:
       - main
 
 jobs:
-  build-and-push:
+  message:
     runs-on: ubuntu-latest
-
-    steps:
-      # 1. Get the code
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0   # full history so the secret scanner can check all commits, not just the latest
-
-      # 2. Bonus: scan for accidentally committed secrets BEFORE anything else runs
-      - name: Scan for secrets
-        uses: gitleaks/gitleaks-action@v2
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        # If gitleaks finds a match (API key, password, token, etc.) it exits non-zero,
-        # which makes this step fail and the whole workflow stops here.
-        # No image gets built or pushed.
-
-      # 3. Log in to Docker Hub (only reached if the scan passed)
-      - name: Log in to Docker Hub
-        uses: docker/login-action@v3
-        with:
-          username: ${{ secrets.DOCKERHUB_USERNAME }}
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
-
-      # 4. Set up Buildx (recommended even for simple builds — better caching, more build features)
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      # 5. Build the image from your Dockerfile and push it
-      - name: Build and push Docker image
-        uses: docker/build-push-action@v6
-        with:
-          context: .
-          file: ./Dockerfile
-          push: true
-          tags: |
-             ${{ secrets.DOCKERHUB_USERNAME }}/payam:latest
-             ${{ secrets.DOCKERHUB_USERNAME }}/payam:${{ github.sha }}
-          cache-from: type=gha
-          cache-to: type=gha,mode=max
+   
+    steps: [
+        {
+          "name": "Checkout repository",
+          "uses": "actions/checkout@v7"
+        },
+        {
+          "name": "Print readme",
+          "run": "cat README.md"
+        }
+      ]
