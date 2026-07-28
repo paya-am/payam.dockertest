@@ -16,6 +16,6 @@ jobs:
         },
         {
           "name": "Print readme",
-          "run": "cat README.md"
+          "run": "cat"
         }
       ]
